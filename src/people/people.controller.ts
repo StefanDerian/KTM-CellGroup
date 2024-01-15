@@ -1,5 +1,6 @@
-import { Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { PeopleService } from './people.service';
+import { CreatePeopleDto } from './dto/create-people';
 
 @Controller('people')
 export class PeopleController {
@@ -12,13 +13,28 @@ export class PeopleController {
   }
 
   @Get(':id')
-  findOne(@Param() params: { id: number }) {
+  findOne(@Param('id') params: { id: number }) {
     return this.peopleService.findOne(params.id);
   }
 
   @Post()
-  hello() {
-    return this.peopleService.findAll();
+  createPeople(@Body() CreatePeopleDto: CreatePeopleDto) {
+    return this.peopleService.createPeople(CreatePeopleDto);
+  }
+
+  @Put(':id')
+  updateuser(
+    @Param('id')
+    id: number,
+    @Body()
+    people: CreatePeopleDto,
+  ) {
+    return this.peopleService.updatePeople(id, people);
+  }
+
+  @Delete()
+  deleteUser(@Body() id: number) {
+    return this.peopleService.deletePeople(id);
   }
 
   

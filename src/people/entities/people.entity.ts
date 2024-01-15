@@ -12,5 +12,11 @@ export class People {
   lastName: string;
 
   @Column()
+  phoneNumber: string;
+
+  @Column()
+  email: string;
+
+  @Column()
   dob: Date;
 }
