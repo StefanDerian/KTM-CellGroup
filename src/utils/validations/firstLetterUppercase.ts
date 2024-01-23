@@ -11,7 +11,7 @@ import {
 @ValidatorConstraint({ async: true })
 export class IsFirstLetterUppercaseConstraint implements ValidatorConstraintInterface {
   validate(word: string) {
-    return isUppercase(word.charAt(0))
+    return isUppercase(word?.charAt(0))
   }
   defaultMessage(validationArguments?: ValidationArguments): string {
       return 'first letter need to be capital'

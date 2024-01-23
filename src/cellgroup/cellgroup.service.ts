@@ -1,26 +1,38 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCellgroupDto } from './dto/create-cellgroup.dto';
-import { UpdateCellgroupDto } from './dto/update-cellgroup.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Cellgroup } from './entities/cellgroup.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class CellgroupService {
-  create(createCellgroupDto: CreateCellgroupDto) {
-    return 'This action adds a new cellgroup';
+
+  constructor(
+    @InjectRepository(Cellgroup)
+    private cellgroupRepository: Repository<Cellgroup>,
+  ) {}
+
+
+  async createCellgroup(createCellgroupDto: CreateCellgroupDto) {
+    const newCellgroup = this.cellgroupRepository.create(createCellgroupDto);
+    await this.cellgroupRepository.save(createCellgroupDto);
+    return newCellgroup;
   }
 
-  findAll() {
-    return `This action returns all cellgroup`;
+  findAllCellgroup(): Promise<Cellgroup[]> {
+    return this.cellgroupRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} cellgroup`;
+  findOneCellgroup(id: number) {
+    return this.cellgroupRepository.findOneBy({id});
   }
 
-  update(id: number, updateCellgroupDto: UpdateCellgroupDto) {
-    return `This action updates a #${id} cellgroup`;
+  async updateCellgroup(id: number, updateCellgroupDto: CreateCellgroupDto) {
+    const updatedCellgroup = await this.cellgroupRepository.update(id, updateCellgroupDto);
+    return updatedCellgroup;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} cellgroup`;
+  deleteCellgroup(id: number) {
+    return this.cellgroupRepository.delete(id)
   }
 }

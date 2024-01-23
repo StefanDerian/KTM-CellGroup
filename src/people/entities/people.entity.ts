@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { CellgroupToPeople } from '../../entities/cellgroupsToPeople.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class People {
@@ -19,4 +20,7 @@ export class People {
 
   @Column()
   dob: Date;
+
+  @OneToMany(() => CellgroupToPeople, cellgroupToPeople => cellgroupToPeople.people)
+  public cellgroupsToPeople : CellgroupToPeople[]
 }

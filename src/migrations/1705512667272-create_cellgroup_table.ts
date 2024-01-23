@@ -1,11 +1,11 @@
-import { MigrationInterface, QueryRunner, Table, TableIndex } from "typeorm"
+import { MigrationInterface, QueryRunner, Table } from "typeorm"
 
-export class CreatePeopleTable1699958022835 implements MigrationInterface {
+export class CreateCellgroupTable1705512667272 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: "people",
+                name: "cellgroup",
                 columns: [
                     {
                         name: "id",
@@ -15,25 +15,21 @@ export class CreatePeopleTable1699958022835 implements MigrationInterface {
                         generationStrategy: "increment"
                     },
                     {
-                        name: "firstname",
+                        name: "name",
                         type: "varchar",
                     },
                     {
-                        name: "lastname",
+                        name: "day",
                         type: "varchar",
                     },
                     {
-                        name: "dob",
-                        type: "timestamp",
-                    },
-                    {
-                        name: "phoneNumber",
+                        name: "frequency",
                         type: "varchar",
                     },
                     {
-                        name: "email",
+                        name: "status",
                         type: "varchar",
-                    },
+                    }
                 ],
             }),
             true,
@@ -41,7 +37,7 @@ export class CreatePeopleTable1699958022835 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("people")
+        await queryRunner.dropTable("cellgroup")
     }
 
 }
