@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, Table, TableIndex } from "typeorm"
+import { MigrationInterface, QueryRunner, Table } from "typeorm"
 
 export class CreatePeopleTable1699958022835 implements MigrationInterface {
 

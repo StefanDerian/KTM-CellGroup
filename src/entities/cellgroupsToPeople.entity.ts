@@ -10,7 +10,7 @@ export enum CellGroupStatus {
 }
 
 
-@Entity()
+@Entity("cellgroup_people")
 export class CellgroupToPeople {
    
     @PrimaryGeneratedColumn()

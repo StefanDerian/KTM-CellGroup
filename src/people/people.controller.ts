@@ -12,15 +12,21 @@ export class PeopleController {
     return this.peopleService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') params: { id: number }) {
-    return this.peopleService.findOne(params.id);
+  @Get('/cellgroups')
+  findAllPeopleAndCellgroups() {
+    return this.peopleService.getAllPeopleCellGroups();
+  }
+
+  @Get('/:id')
+  findOne(@Param('id') id: number) {
+    return this.peopleService.findOne(id);
   }
 
   @Post()
   createPeople(@Body() CreatePeopleDto: CreatePeopleDto) {
     return this.peopleService.createPeople(CreatePeopleDto);
   }
+
 
   @Put(':id')
   updateuser(

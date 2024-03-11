@@ -23,7 +23,10 @@ import typeorm from './config/typeorm';
     })
   ],
   controllers: [AppController],
-  providers: [AppService]
+  providers: [
+    AppService,
+    
+  ]
 })
 export class AppModule {
 }
